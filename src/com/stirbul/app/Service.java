@@ -6,10 +6,10 @@ import java.util.*;
 
 /*
     <--traversePraysAdjList and traversePredatorAdjList-->
-        Pringting the Adjacency Lists of predators and prays
-    <--Sinling-->
+        Printing the Adjacency Lists of predators and prays
+    <--Sibling-->
         If 2 animals have the same number of Predators, than they are siblings
-    <--isPredatorof and isPrayOf-->
+    <--isPredatorOf and isPrayOf-->
         Check if one animal is predator(pray) of the other animal and return true/false
     <--findLoop-->
         Using util recursive method with the DFT logic
