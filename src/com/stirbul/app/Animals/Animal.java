@@ -4,7 +4,7 @@ import com.stirbul.app.AdditionalClasses.Pray;
 import com.stirbul.app.AdditionalClasses.Predator;
 
 
-public class Animal {
+public abstract class Animal {
     private String species;
     private int numberOfLegs;
     private boolean hasATail;
@@ -15,8 +15,68 @@ public class Animal {
     private Pray pray = new Pray();
     private Predator predator = new Predator();
 
-    public Animal() {
+
+    protected abstract static class Builder<T extends Builder<T>>{
+        private String species;
+        private int numberOfLegs;
+        private boolean hasATail;
+        private int moveSpeed;
+        private String habitat;
+        private Double weight;
+        private Double height;
+
+        public Builder(String species){
+            this.species = species;
+        }
+
+        public T numberOfLegs(int numberOfLegs){
+            this.numberOfLegs = numberOfLegs;
+            return self();
+        }
+
+        public T hasATail(boolean hasATail){
+            this.hasATail = hasATail;
+            return self();
+        }
+
+        public T moveSpeed(int moveSpeed){
+            this.moveSpeed = moveSpeed;
+            return self();
+        }
+
+        public T habitat(String habitat){
+            this.habitat = habitat;
+            return self();
+        }
+
+        public T weight(Double weight){
+            this.weight = weight;
+            return self();
+        }
+
+        public T height(Double height){
+            this.height = height;
+            return self();
+        }
+
+        protected abstract T self();
+        public abstract Animal build();
     }
+
+    protected Animal(Builder<?> builder){
+        species = builder.species;
+        numberOfLegs = builder.numberOfLegs;
+        hasATail = builder.hasATail;
+        moveSpeed = builder.moveSpeed;
+        habitat = builder.habitat;
+        weight = builder.weight;
+        height = builder.height;
+    }
+
+
+
+//    public Animal() {
+//    }
 
     public Animal(String species, int numberOfLegs, boolean hasATail, int moveSpeed,
                   String habitat, Double weight, Double height) {
