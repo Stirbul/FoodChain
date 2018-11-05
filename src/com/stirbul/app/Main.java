@@ -9,7 +9,6 @@ import com.stirbul.app.Animals.Mammal.Mouse;
 import com.stirbul.app.Animals.Mammal.Wolf;
 
 import java.util.Arrays;
-
 /*
                             <<---Main Idea--->>
                  ArrayList<Animal> animalAdjList = {
