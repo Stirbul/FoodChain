@@ -10,7 +10,7 @@ public class Wolf extends Mammal {
             super(species);
         }
 
-        public Wolf.Builder numberOfEyes(int numberOfEyes){
+        public Builder numberOfEyes(int numberOfEyes){
             this.numberOfEyes = numberOfEyes;
             return self();
         }

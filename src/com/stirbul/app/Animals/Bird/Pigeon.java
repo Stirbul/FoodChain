@@ -1,19 +1,42 @@
 package com.stirbul.app.Animals.Bird;
 
-import com.stirbul.app.AdditionalClasses.Pray;
-import com.stirbul.app.AdditionalClasses.Predator;
-import com.stirbul.app.Animals.Animal;
-
 public class Pigeon extends Bird {
     private Double distancePerDay;
     private boolean canSitOnBranch;
 
-    public Pigeon(String species, int numberOfLegs, boolean hasATail, int moveSpeed, String habitat, Double weight, Double height,
-                  Double flyHeight, Double wingSpread, String formOfBeak, Double distancePerDay,
-                  boolean canSitOnBranch) {
-        super(species,numberOfLegs, hasATail, moveSpeed, habitat, weight, height, flyHeight, wingSpread, formOfBeak);
-        this.distancePerDay = distancePerDay;
-        this.canSitOnBranch = canSitOnBranch;
+    public static class Builder extends Bird.Init<Builder>{
+        private Double distancePerDay;
+        private boolean canSitOnBranch;
+
+        public Builder(String species){
+            super(species);
+        }
+
+        public Builder distancePerDay(Double distancePerDay){
+            this.distancePerDay = distancePerDay;
+            return self();
+        }
+
+        public Builder canSitOnBranch(boolean canSitOnBranch){
+            this.canSitOnBranch = canSitOnBranch;
+            return self();
+        }
+
+        @Override
+        public Pigeon build() {
+            return new Pigeon(this);
+        }
+
+        @Override
+        protected Builder self() {
+            return this;
+        }
+    }
+
+    private Pigeon(Builder builder){
+        super(builder);
+        this.distancePerDay = builder.distancePerDay;
+        this.canSitOnBranch = builder.canSitOnBranch;
     }
 
     public Double getDistancePerDay() {

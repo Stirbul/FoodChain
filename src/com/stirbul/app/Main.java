@@ -28,33 +28,42 @@ import java.util.Arrays;
 
 public class Main {
     public static void main(String[] args) {
-        //Creating objects
-//        Wolf grayWolf = new Wolf("Gray Wolf",4,true,18,"forest",
-//                30.0,55.0,2.0,"black",2,2);
-
+        //Creating objects with the help of Builder Design Pattern
         Wolf grayWolf = new Wolf.Builder("Gray Wolf")
                 .brainWeight(12.3)
                 .build();
 
-        Elk forestElk = new Elk("Forest Elk",4,true,18,"forest",
-                50.0,95.0, 1.0,"brown",2,true,30);
+        Elk forestElk = new Elk.Builder("Forest Elk")
+                .hasHorns(true)
+                .brainWeight(23.5)
+                .build();
 
-        Mouse fieldMouse = new Mouse("Field Mouse",4,true,7, "Field",
-                0.07,0.03,0.005,"grey",2, true,"red");
+        Mouse fieldMouse = new Mouse.Builder("Field Mouse")
+                .eyeColour("red")
+                .habitat("Field")
+                .build();
 
-        Fox redFox = new Fox("Red Fox",4,true,18,"Forest",
-                5.0,0.35, 0.3,"red",2,"high");
+        Fox redFox = new Fox.Builder("Red Fox")
+                .agilityLevel("high")
+                .habitat("Forest")
+                .build();
 
-        Eagle goldenEagle = new Eagle("Golden Eagle",2,true,45,
-                "mountain", 6.0, 4.0, 10000.0,2.03,"Curved",
-                100,241);
+        Eagle goldenEagle = new Eagle.Builder("Golden Eagle")
+                .vision(100)
+                .divingSpeed(241)
+                .habitat("Mountain")
+                .build();
 
-        Pigeon passengerPigeon = new Pigeon("Passenger Pigeon",2,true,20,
-                "Field",0.36,0.08, 3.0,0.5,"Straight",
-                1000.0,false);
+        Pigeon passengerPigeon = new Pigeon.Builder("Passenger Pigeon")
+                .canSitOnBranch(false)
+                .hasATail(true)
+                .build();
 
-        Owl barnOwl = new Owl("Barn Owl",2,true,30,"forest",
-                4.0,0.5, 5.0,0.7,"Curved","270",false);
+        Owl barnOwl = new Owl.Builder("Barn Owl")
+                .eyesMotion(false)
+                .headRotate("270")
+                .habitat("Forest")
+                .build();
 
         //Setting predators and prays
         goldenEagle.setPray(redFox, grayWolf, fieldMouse, passengerPigeon, barnOwl, redFox);

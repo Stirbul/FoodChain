@@ -1,16 +1,34 @@
 package com.stirbul.app.Animals.Mammal;
 
-import com.stirbul.app.AdditionalClasses.Pray;
-import com.stirbul.app.AdditionalClasses.Predator;
-import com.stirbul.app.Animals.Animal;
-
 public class Fox extends Mammal {
     private String agilityLevel;
 
-    public Fox(String species,int numberOfLegs, boolean hasATail, int moveSpeed, String habitat, Double weight, Double height,
-               Double brainWeight, String hairColour, int numberOfLungs, String agilityLevel) {
-        super(species, numberOfLegs, hasATail, moveSpeed, habitat, weight, height, brainWeight, hairColour, numberOfLungs);
-        this.agilityLevel = agilityLevel;
+    public static class Builder extends Mammal.Init<Builder>{
+        private String agilityLevel;
+
+        public Builder(String species){
+            super(species);
+        }
+
+        public Builder agilityLevel(String agilityLevel){
+            this.agilityLevel = agilityLevel;
+            return self();
+        }
+
+        @Override
+        public Fox build() {
+            return new Fox(this);
+        }
+
+        @Override
+        protected Builder self() {
+            return this;
+        }
+    }
+
+    private Fox(Builder builder){
+        super(builder);
+        this.agilityLevel = builder.agilityLevel;
     }
 
     public String getAgilityLevel() {

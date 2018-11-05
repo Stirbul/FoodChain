@@ -55,15 +55,6 @@ public class Mammal extends Animal {
         this.numberOfLungs = init.numberOfLungs;
     }
 
-    //------------------------------
-    public Mammal(String species,int numberOfLegs, boolean hasATail, int moveSpeed, String habitat, Double weight, Double height,
-                  Double brainWeight, String hairColour, int numberOfLungs) {
-        super(species,numberOfLegs, hasATail, moveSpeed, habitat, weight, height);
-        this.brainWeight = brainWeight;
-        this.hairColour = hairColour;
-        this.numberOfLungs = numberOfLungs;
-    }
-
     public Double getBrainWeight() {
         return brainWeight;
     }

@@ -7,12 +7,53 @@ public class Bird extends Animal {
     private Double wingSpread;
     private String formOfBeak;
 
-    public Bird(String species,int numberOfLegs, boolean hasATail, int moveSpeed, String habitat, Double weight,
-                Double height, Double flyHeight, Double wingSpread, String formOfBeak) {
-        super(species,numberOfLegs, hasATail, moveSpeed, habitat, weight, height);
-        this.flyHeight = flyHeight;
-        this.wingSpread = wingSpread;
-        this.formOfBeak = formOfBeak;
+    protected abstract static class Init<T extends Init<T>> extends Animal.Init<T>{
+        private Double flyHeight;
+        private Double wingSpread;
+        private String formOfBeak;
+
+        Init(String species){
+            super(species);
+        }
+
+        public T flyHeight(Double flyHeight){
+            this.flyHeight = flyHeight;
+            return self();
+        }
+
+        public T wingSpread(Double wingSpread){
+            this.wingSpread = wingSpread;
+            return self();
+        }
+
+        public T formOfBeak(String formOfBeak){
+            this.formOfBeak = formOfBeak;
+            return self();
+        }
+
+        @Override
+        public Bird build() {
+            return new Bird(this);
+        }
+    }
+
+    public static class Builder extends Init<Builder>{
+        public Builder(String species){
+            super(species);
+        }
+
+        @Override
+        protected Builder self() {
+            return this;
+        }
+    }
+
+    protected Bird(Init<?> init){
+        super(init);
+        this.flyHeight = init.flyHeight;
+        this.formOfBeak = init.formOfBeak;
+        this.wingSpread = init.wingSpread;
+
     }
 
     public Double getFlyHeight() {

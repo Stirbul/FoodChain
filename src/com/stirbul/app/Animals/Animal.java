@@ -15,7 +15,6 @@ public class Animal {
     private Pray pray = new Pray();
     private Predator predator = new Predator();
 
-
     protected abstract static class Init<T extends Init<T>>{
         private String species;
         private int numberOfLegs;
@@ -85,36 +84,6 @@ public class Animal {
         habitat = init.habitat;
         weight = init.weight;
         height = init.height;
-    }
-
-
-
-//    public Animal() {
-//    }
-
-    public Animal(String species, int numberOfLegs, boolean hasATail, int moveSpeed,
-                  String habitat, Double weight, Double height) {
-        this.species = species;
-        this.numberOfLegs = numberOfLegs;
-        this.hasATail = hasATail;
-        this.moveSpeed = moveSpeed;
-        this.habitat = habitat;
-        this.weight = weight;
-        this.height = height;
-    }
-
-    public Animal(String species, int numberOfLegs, boolean hasATail,
-                  int moveSpeed, String habitat,
-                  Double weight, Double height, Pray pray, Predator predator) {
-        this.species = species;
-        this.numberOfLegs = numberOfLegs;
-        this.hasATail = hasATail;
-        this.moveSpeed = moveSpeed;
-        this.habitat = habitat;
-        this.weight = weight;
-        this.height = height;
-        this.pray = pray;
-        this.predator = predator;
     }
 
     public String getSpecies() {

@@ -1,18 +1,42 @@
 package com.stirbul.app.Animals.Bird;
 
-import com.stirbul.app.AdditionalClasses.Pray;
-import com.stirbul.app.AdditionalClasses.Predator;
-import com.stirbul.app.Animals.Animal;
-
 public class Eagle extends Bird {
     private int vision;
     private int divingSpeed;
 
-    public Eagle(String species, int numberOfLegs, boolean hasATail, int moveSpeed, String habitat, Double weight, Double height,
-                 Double flyHeight, Double wingSpread, String formOfBeak, int vision, int divingSpeed) {
-        super(species,numberOfLegs, hasATail, moveSpeed, habitat, weight, height, flyHeight, wingSpread, formOfBeak);
-        this.vision = vision;
-        this.divingSpeed = divingSpeed;
+    public static class Builder extends Bird.Init<Builder>{
+        private int vision;
+        private int divingSpeed;
+
+        public Builder(String species){
+            super(species);
+        }
+
+        public Builder vision(int vision){
+            this.vision = vision;
+            return self();
+        }
+
+        public Builder divingSpeed(int divingSpeed){
+            this.divingSpeed = divingSpeed;
+            return self();
+        }
+
+        @Override
+        public Eagle build() {
+            return new Eagle(this);
+        }
+
+        @Override
+        protected Builder self() {
+            return this;
+        }
+    }
+
+    private Eagle(Builder builder){
+        super(builder);
+        this.vision = builder.vision;
+        this.divingSpeed = builder.divingSpeed;
     }
 
     public int getVision() {

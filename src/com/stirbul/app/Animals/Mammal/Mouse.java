@@ -1,20 +1,43 @@
 package com.stirbul.app.Animals.Mammal;
 
-
-import com.stirbul.app.AdditionalClasses.Predator;
-import com.stirbul.app.Animals.Animal;
-
 public class Mouse extends Mammal {
     private boolean isScientific;
     private String eyeColour;
 
-    public Mouse(String species, int numberOfLegs, boolean hasATail, int moveSpeed, String habitat, Double weight,
-                 Double height, Double brainWeight, String hairColour, int numberOfLungs, boolean isScientific, String eyeColour) {
-        super(species, numberOfLegs, hasATail, moveSpeed, habitat, weight, height, brainWeight, hairColour, numberOfLungs);
-        this.isScientific = isScientific;
-        this.eyeColour = eyeColour;
+    public static class Builder extends Mammal.Init<Builder>{
+        private boolean isScientific;
+        private String eyeColour;
+
+        public Builder(String species) {
+            super(species);
+        }
+
+        public Mouse.Builder isScientific(boolean isScientific){
+            this.isScientific = isScientific;
+            return self();
+        }
+
+        public Mouse.Builder eyeColour(String eyeColour){
+            this.eyeColour = eyeColour;
+            return self();
+        }
+
+        @Override
+        public Mouse build() {
+            return new Mouse(this);
+        }
+
+        @Override
+        protected Builder self() {
+            return this;
+        }
     }
 
+    private Mouse(Builder builder){
+        super(builder);
+        this.isScientific = builder.isScientific;
+        this.eyeColour = builder.eyeColour;
+    }
 
     public boolean isScientific() {
         return isScientific;
