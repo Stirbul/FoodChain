@@ -12,8 +12,8 @@ public class Animal {
     private String habitat;
     private Double weight;
     private Double height;
-    private Pray pray = new Pray();
-    private Predator predator = new Predator();
+    private Pray pray;
+    private Predator predator;
 
     protected abstract static class Init<T extends Init<T>>{
         private String species;
@@ -23,9 +23,23 @@ public class Animal {
         private String habitat;
         private Double weight;
         private Double height;
+        private Pray pray;
+        private Predator predator;
 
         public Init(String species){
             this.species = species;
+            pray = new Pray();
+            predator = new Predator();
+        }
+
+        public T pray(Animal... prayArray){
+            this.pray.prayOf(prayArray);
+            return self();
+        }
+
+        public T predator(Animal... predatorArray){
+            this.predator.predatorOf(predatorArray);
+            return self();
         }
 
         public T numberOfLegs(int numberOfLegs){
@@ -84,6 +98,8 @@ public class Animal {
         habitat = init.habitat;
         weight = init.weight;
         height = init.height;
+        predator = init.predator;
+        pray = init.pray;
     }
 
     public String getSpecies() {

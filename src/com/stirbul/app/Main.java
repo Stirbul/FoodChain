@@ -19,6 +19,7 @@ import java.util.Arrays;
                  }
 
     After creating an object of a class you need to specify its Prays and Predators
+        or you can specify it using Builder method predator() or pray() --> look owl inst
     Do this by using methods [objectName].setPray(Animal... prayArray) and
                              [objectName].setPredator(Animal... predatorArray)
     Then add this animal using Service.getAnimalAdjList().{add(), addAll()}
@@ -62,6 +63,7 @@ public class Main {
                 .eyesMotion(false)
                 .headRotate("270")
                 .habitat("Forest")
+                .predator(redFox)
                 .build();
 
         //Setting predators and prays
@@ -79,7 +81,7 @@ public class Main {
         fieldMouse.setPredator(redFox,goldenEagle,barnOwl);
 
         barnOwl.setPray(fieldMouse, passengerPigeon);
-        barnOwl.setPredator(redFox, grayWolf, goldenEagle);
+        barnOwl.setPredator(grayWolf, goldenEagle);
 
         passengerPigeon.setPredator(grayWolf, redFox, barnOwl, goldenEagle);
 
