@@ -31,11 +31,10 @@ public class Main {
         //Creating objects
 //        Wolf grayWolf = new Wolf("Gray Wolf",4,true,18,"forest",
 //                30.0,55.0,2.0,"black",2,2);
+
         Wolf grayWolf = new Wolf.Builder("Gray Wolf")
-                .hairColour("black")
-                .numberOfLegs(4)
-                .hasATail(true)
-               ;
+                .brainWeight(12.3)
+                .build();
 
         Elk forestElk = new Elk("Forest Elk",4,true,18,"forest",
                 50.0,95.0, 1.0,"brown",2,true,30);

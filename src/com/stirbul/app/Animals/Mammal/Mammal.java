@@ -2,21 +2,19 @@ package com.stirbul.app.Animals.Mammal;
 
 import com.stirbul.app.Animals.Animal;
 
-public abstract class Mammal extends Animal {
+public class Mammal extends Animal {
     private Double brainWeight;
     private String hairColour;
     private int numberOfLungs = 2;
 
-    public abstract static class Builder<T extends Animal.Builder<T>> extends Animal.Builder<T>{
+    protected abstract static class Init<T extends Init<T>> extends Animal.Init<T>{
         private Double brainWeight;
         private String hairColour;
         private int numberOfLungs = 2;
 
-        Builder(String species){
+        Init(String species){
             super(species);
         }
-
-        protected abstract T self();
 
         public T brainWeight(Double brainWeight){
             this.brainWeight = brainWeight;
@@ -32,13 +30,29 @@ public abstract class Mammal extends Animal {
             this.numberOfLungs = numberOfLungs;
             return self();
         }
+
+        @Override
+        public Mammal build() {
+            return new Mammal(this);
+        }
     }
 
-    protected Mammal(Builder builder){
-        super(builder);
-        this.brainWeight = builder.brainWeight;
-        this.hairColour = builder.hairColour;
-        this.numberOfLungs = builder.numberOfLungs;
+    public static class Builder extends Init<Builder>{
+
+        public Builder(String species){
+            super(species);
+        }
+        @Override
+        protected Builder self() {
+            return this;
+        }
+    }
+
+    protected Mammal(Init<?> init){
+        super(init);
+        this.brainWeight = init.brainWeight;
+        this.hairColour = init.hairColour;
+        this.numberOfLungs = init.numberOfLungs;
     }
 
     //------------------------------

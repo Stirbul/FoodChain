@@ -4,7 +4,7 @@ import com.stirbul.app.AdditionalClasses.Pray;
 import com.stirbul.app.AdditionalClasses.Predator;
 
 
-public abstract class Animal {
+public class Animal {
     private String species;
     private int numberOfLegs;
     private boolean hasATail;
@@ -16,7 +16,7 @@ public abstract class Animal {
     private Predator predator = new Predator();
 
 
-    protected abstract static class Builder<T extends Builder<T>>{
+    protected abstract static class Init<T extends Init<T>>{
         private String species;
         private int numberOfLegs;
         private boolean hasATail;
@@ -25,7 +25,7 @@ public abstract class Animal {
         private Double weight;
         private Double height;
 
-        public Builder(String species){
+        public Init(String species){
             this.species = species;
         }
 
@@ -59,18 +59,32 @@ public abstract class Animal {
             return self();
         }
 
+        public Animal build(){
+            return new Animal(this);
+        }
+
         protected abstract T self();
-        public abstract Animal build();
     }
 
-    protected Animal(Builder<?> builder){
-        species = builder.species;
-        numberOfLegs = builder.numberOfLegs;
-        hasATail = builder.hasATail;
-        moveSpeed = builder.moveSpeed;
-        habitat = builder.habitat;
-        weight = builder.weight;
-        height = builder.height;
+    public static class Builder extends Init<Builder>{
+        public Builder(String species){
+            super(species);
+        }
+
+        @Override
+        protected Builder self() {
+            return this;
+        }
+    }
+
+    protected Animal(Init<?> init){
+        species = init.species;
+        numberOfLegs = init.numberOfLegs;
+        hasATail = init.hasATail;
+        moveSpeed = init.moveSpeed;
+        habitat = init.habitat;
+        weight = init.weight;
+        height = init.height;
     }
 
 
