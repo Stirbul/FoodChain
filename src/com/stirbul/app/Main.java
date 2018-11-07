@@ -13,14 +13,14 @@ import java.util.Arrays;
                             <<---Main Idea--->>
                  ArrayList<Animal> animalAdjList = {
 
-              LinkedList<Animal> prays  <-  wolf,  -> LinkedList<Animal> predators;
-              LinkedList<Animal> prays  <-  eagle, -> LinkedList<Animal> predators;
+              LinkedList<Animal> preys  <-  wolf,  -> LinkedList<Animal> predators;
+              LinkedList<Animal> preys  <-  eagle, -> LinkedList<Animal> predators;
                                              ...
                  }
 
-    After creating an object of a class you need to specify its Prays and Predators
-        or you can specify it using Builder method predator() or pray() --> look owl inst
-    Do this by using methods [objectName].setPray(Animal... prayArray) and
+    After creating an object of a class you need to specify its Preys and Predators
+        or you can specify it using Builder method predator() or prey() --> look owl inst
+    Do this by using methods [objectName].setPrey(Animal... preyArray) and
                              [objectName].setPredator(Animal... predatorArray)
     Then add this animal using Service.getAnimalAdjList().{add(), addAll()}
     Service methods are described in Service class
@@ -66,21 +66,21 @@ public class Main {
                 .predator(redFox)
                 .build();
 
-        //Setting predators and prays
-        goldenEagle.setPray(redFox, grayWolf, fieldMouse, passengerPigeon, barnOwl, redFox);
-        goldenEagle.setPredator(grayWolf);
+        //Setting predators and preys
+        goldenEagle.setPrey(redFox, grayWolf, fieldMouse, passengerPigeon, barnOwl, redFox);
+        // goldenEagle.setPredator(grayWolf);
 
-        grayWolf.setPray(forestElk, fieldMouse, redFox, goldenEagle, passengerPigeon, barnOwl);
+        grayWolf.setPrey(forestElk, fieldMouse, redFox, goldenEagle, passengerPigeon, barnOwl);
         grayWolf.setPredator(goldenEagle);
 
-        redFox.setPray(fieldMouse, passengerPigeon, barnOwl);
+        redFox.setPrey(fieldMouse, passengerPigeon, barnOwl);
         redFox.setPredator(grayWolf, goldenEagle);
 
         forestElk.setPredator(grayWolf);
 
         fieldMouse.setPredator(redFox,goldenEagle,barnOwl);
 
-        barnOwl.setPray(fieldMouse, passengerPigeon);
+        barnOwl.setPrey(fieldMouse, passengerPigeon);
         barnOwl.setPredator(grayWolf, goldenEagle);
 
         passengerPigeon.setPredator(grayWolf, redFox, barnOwl, goldenEagle);
@@ -103,16 +103,16 @@ public class Main {
         System.out.println();
         System.out.println("\n");
 
-        //Traverse Pray Adjacency List
-        System.out.println("\t\tPray Adjacency List: \n");
-        Service.traversePraysAdjList();
+        //Traverse Prey Adjacency List
+        System.out.println("\t\tPrey Adjacency List: \n");
+        Service.traversePreysAdjList();
         System.out.println();
         System.out.println("\n");
 
-        //Traverse Prays
-        System.out.println("\t\tTraverse Prays: \n");
-        Service.traversePrayDFT(goldenEagle);
-        Service.traversePrayDFT(grayWolf);
+        //Traverse Preys
+        System.out.println("\t\tTraverse Preys: \n");
+        Service.traversePreyDFT(goldenEagle);
+        Service.traversePreyDFT(grayWolf);
         System.out.println();
         System.out.println("\n");
 
@@ -129,11 +129,11 @@ public class Main {
         Service.findLoop(forestElk);
         System.out.println("\n");
 
-        //Checking for prays and predators
-        System.out.println("\t\tChecking prays and predators: \n");
+        //Checking for preys and predators
+        System.out.println("\t\tChecking preys and predators: \n");
         System.out.println(Service.isPredatorOf(grayWolf,redFox));
         System.out.println(Service.isPredatorOf(forestElk,grayWolf));
-        System.out.println(Service.isPrayOf(barnOwl,goldenEagle));
+        System.out.println(Service.isPreyOf(barnOwl,goldenEagle));
         System.out.println("\n");
     }
 }

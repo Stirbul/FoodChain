@@ -5,20 +5,20 @@ import com.stirbul.app.Animals.Animal;
 import java.util.*;
 
 /*
-    <--traversePraysAdjList and traversePredatorAdjList-->
-        Printing the Adjacency Lists of predators and prays
+    <--traversePreysAdjList and traversePredatorAdjList-->
+        Printing the Adjacency Lists of predators and preys
     <--Sibling-->
         If 2 animals have the same number of Predators, than they are siblings
-    <--isPredatorOf and isPrayOf-->
-        Check if one animal is predator(pray) of the other animal and return true/false
+    <--isPredatorOf and isPreyOf-->
+        Check if one animal is predator(prey) of the other animal and return true/false
     <--findLoop-->
         Using util recursive method with the DFT logic
-    <--TraversePredator and TraversePray-->
+    <--TraversePredator and TraversePrey-->
         Methods use DFT logic to traverse till the end of food chain
-        In TraversePredator and TraversePray methods we use Random generation to pick every time different
+        In TraversePredator and TraversePrey methods we use Random generation to pick every time different
         animal from the food chain, and by that pick different food chain
     <--   -->
-        Methods getPray() and getPredator() returns a LinkedList
+        Methods getPrey() and getPredator() returns a LinkedList
         You can use it for every animal, cause the methods are from the super class Animal
  */
 
@@ -31,10 +31,10 @@ public class Service {
     }
 
     //printing the ajacencyList
-    static void traversePraysAdjList(){
+    static void traversePreysAdjList(){
         for(var s : animalAdjList){
             System.out.print(s.getSpecies() + " : ");
-            s.getPray().prayListTraverse();
+            s.getPrey().preyListTraverse();
         }
     }
 
@@ -50,12 +50,12 @@ public class Service {
         return o1.getPredator().getPredatorList().size() == o2.getPredator().getPredatorList().size();
     }
 
-    static boolean isPredatorOf(Animal predatorObject, Animal prayObject){
-        return predatorObject.getPray().getPraysList().contains(prayObject);
+    static boolean isPredatorOf(Animal predatorObject, Animal preyObject){
+        return predatorObject.getPrey().getPreysList().contains(preyObject);
     }
 
-    static boolean isPrayOf(Animal prayObject ,Animal predatorObject){
-        return prayObject.getPredator().getPredatorList().contains(predatorObject);
+    static boolean isPreyOf(Animal preyObject ,Animal predatorObject){
+        return preyObject.getPredator().getPredatorList().contains(predatorObject);
     }
 
     static void findLoop(Animal object){
@@ -78,7 +78,6 @@ public class Service {
         }
     }
 
-
     private static void findLoopUtil(Animal object, ArrayList<Animal> set, Boolean loopFound) {
         int index = animalAdjList.indexOf(object);
         set.add(object);
@@ -90,12 +89,11 @@ public class Service {
                 set.add(n);
             }
         }
-
     }
 
     //Predator Traversal
     //simple DFT
-    static void traversePredatorDFT(Animal predatorObject){
+    static void traversePredatorDFT(Animal predatorObject) throws IllegalArgumentException{
         //create boolean array so we dont have loops
         boolean visited[] = new boolean[animalAdjList.size()];
         //calling util method
@@ -109,51 +107,70 @@ public class Service {
         //make it true and print it
         visited[predatorIndex] = true;
         System.out.print(predatorObject.getSpecies());
-        //if dont have next object || have next object, but it is already in [visited] put new line, else arrow(<-)
-        if(!animalAdjList.get(predatorIndex).getPredator().getPredatorList().listIterator().hasNext()
-                || animalAdjList.get(predatorIndex).getPredator().getPredatorList().listIterator().hasNext()
-                && visited[animalAdjList.indexOf(
-                animalAdjList.get(predatorIndex).getPredator().getPredatorList().listIterator().next())])
-            System.out.print("\n");
-        else
-            System.out.print(" <- ");
-
         //iterating through predatorList
         //for (Animal n : animalAdjList.get(predatorIndex).getPredator().getPredatorList()) {
         Animal n = animalAdjList.get(predatorIndex).getPredator().getRandomPredator();
-            if (n != null && !visited[animalAdjList.indexOf(n)])
-                traversePredatorDFT_Util(n, visited);
+        try{
+            if(n == null)
+                throw new IllegalArgumentException();
+            else {
+                //if dont have next object || have next object,
+                // but it is already in [visited] put new line, else arrow(->)
+                if(!predatorObject.getPredator().getPredatorList().contains(n) ||
+                        predatorObject.getPredator().getPredatorList().contains(n) &&
+                                visited[animalAdjList.indexOf(n)])
+                    System.out.println("\n");
+                else
+                    System.out.print(" -> ");
+            }
+        }catch (Exception e){
+            System.out.println("\nException. The object does not" +
+                    " have predator -- " + e.getMessage());
+            return;
+        }
+        if (/*n!= null &&*/ !visited[animalAdjList.indexOf(n)])
+            traversePredatorDFT_Util(n, visited);
         //}
     }
 
-    //Pray Traversal
-    static void traversePrayDFT(Animal prayObject){
+    //Prey Traversal
+    static void traversePreyDFT(Animal preyObject){
         //create boolean array so we dont have loops
         boolean visited[] = new boolean[animalAdjList.size()];
         //calling util method
-        traversePrayDFT_Util(prayObject, visited);
+        traversePreyDFT_Util(preyObject, visited);
     }
 
-    private static void traversePrayDFT_Util(Animal prayObject, boolean[] visited) {
+    private static void traversePreyDFT_Util(Animal preyObject, boolean[] visited) {
         //index of predatorObject
-        int prayIndex = animalAdjList.indexOf(prayObject);
+        int preyIndex = animalAdjList.indexOf(preyObject);
         //make it true and print it
-        visited[prayIndex] = true;
-        System.out.print(prayObject.getSpecies());
-        //if dont have next object || have next object, but it is already in [visited] put new line, else arrow(->)
-        if(!animalAdjList.get(prayIndex).getPray().getPraysList().listIterator().hasNext()
-                || animalAdjList.get(prayIndex).getPray().getPraysList().listIterator().hasNext()
-                && visited[animalAdjList.indexOf(
-                animalAdjList.get(prayIndex).getPray().getPraysList().listIterator().next())])
-            System.out.print("\n");
-        else
-            System.out.print(" -> ");
-
+        visited[preyIndex] = true;
+        System.out.print(preyObject.getSpecies());
         //iterating through predatorList
-        //for (Animal n : animalAdjList.get(prayIndex).getPray().getPraysList()) {
-        Animal n = animalAdjList.get(prayIndex).getPray().getRandomPray();
-            if (n != null && !visited[animalAdjList.indexOf(n)])
-                traversePrayDFT_Util(n, visited);
+        //for (Animal n : animalAdjList.get(preyIndex).getPrey().getPreysList()) {
+        Animal n = animalAdjList.get(preyIndex).getPrey().getRandomPrey();
+        try{
+            if(n == null)
+                throw new IllegalArgumentException();
+            else {
+                //if dont have next object || have next object,
+                // but it is already in [visited] put new line, else arrow(->)
+
+                if(!preyObject.getPrey().getPreysList().contains(n) ||
+                        preyObject.getPrey().getPreysList().contains(n) &&
+                        visited[animalAdjList.indexOf(n)])
+                    System.out.println("\n");
+                else
+                    System.out.print(" -> ");
+            }
+        }catch (Exception e){
+            System.out.println("\nException. The object does not" +
+                    " have prey -- " + e.getMessage());
+            return;
+        }
+        if (/* n != null  && */ !visited[animalAdjList.indexOf(n)])
+                traversePreyDFT_Util(n, visited);
         //}
     }
 }

@@ -1,6 +1,6 @@
 package com.stirbul.app.Animals;
 
-import com.stirbul.app.AdditionalClasses.Pray;
+import com.stirbul.app.AdditionalClasses.Prey;
 import com.stirbul.app.AdditionalClasses.Predator;
 
 
@@ -12,7 +12,7 @@ public class Animal {
     private String habitat;
     private Double weight;
     private Double height;
-    private Pray pray;
+    private Prey prey;
     private Predator predator;
 
     protected abstract static class Init<T extends Init<T>>{
@@ -23,17 +23,17 @@ public class Animal {
         private String habitat;
         private Double weight;
         private Double height;
-        private Pray pray;
+        private Prey prey;
         private Predator predator;
 
         public Init(String species){
             this.species = species;
-            pray = new Pray();
+            prey = new Prey();
             predator = new Predator();
         }
 
-        public T pray(Animal... prayArray){
-            this.pray.prayOf(prayArray);
+        public T prey(Animal... preyArray){
+            this.prey.preyOf(preyArray);
             return self();
         }
 
@@ -99,7 +99,7 @@ public class Animal {
         weight = init.weight;
         height = init.height;
         predator = init.predator;
-        pray = init.pray;
+        prey = init.prey;
     }
 
     public String getSpecies() {
@@ -158,16 +158,16 @@ public class Animal {
         this.height = height;
     }
 
-    public Pray getPray() {
-        return pray;
+    public Prey getPrey() {
+        return prey;
     }
 
-    public void setPray(Pray pray) {
-        this.pray = pray;
+    public void setPrey(Prey prey) {
+        this.prey = prey;
     }
 
-    public void setPray(Animal... prayArray) {
-        this.pray.prayOf(prayArray);
+    public void setPrey(Animal... preyArray) {
+        this.prey.preyOf(preyArray);
     }
 
     public Predator getPredator() {
