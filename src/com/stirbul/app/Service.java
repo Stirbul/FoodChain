@@ -110,22 +110,21 @@ public class Service {
         //iterating through predatorList
         //for (Animal n : animalAdjList.get(predatorIndex).getPredator().getPredatorList()) {
         Animal n = animalAdjList.get(predatorIndex).getPredator().getRandomPredator();
-        try{
-            if(n == null)
-                throw new IllegalArgumentException();
+        try {
+            if (n == null)
+                throw new IllegalArgumentException("\nEXCEPTION. The object does not have predator");
             else {
                 //if dont have next object || have next object,
                 // but it is already in [visited] put new line, else arrow(->)
-                if(!predatorObject.getPredator().getPredatorList().contains(n) ||
+                if (!predatorObject.getPredator().getPredatorList().contains(n) ||
                         predatorObject.getPredator().getPredatorList().contains(n) &&
                                 visited[animalAdjList.indexOf(n)])
                     System.out.println("\n");
                 else
                     System.out.print(" -> ");
             }
-        }catch (Exception e){
-            System.out.println("\nEXCEPTION. The object does not" +
-                    " have predator -- " + e.getMessage());
+        } catch (Exception e){
+            System.out.println(e.getMessage());
             return;
         }
         if (/*n!= null &&*/ !visited[animalAdjList.indexOf(n)])
@@ -152,7 +151,7 @@ public class Service {
         Animal n = animalAdjList.get(preyIndex).getPrey().getRandomPrey();
         try{
             if(n == null)
-                throw new IllegalArgumentException();
+                throw new IllegalArgumentException("\nEXCEPTION. The object does not have prey");
             else {
                 //if dont have next object || have next object,
                 // but it is already in [visited] put new line, else arrow(->)
@@ -165,8 +164,7 @@ public class Service {
                     System.out.print(" -> ");
             }
         }catch (Exception e){
-            System.out.println("\nEXCEPTION. The object does not" +
-                    " have prey -- " + e.getMessage());
+            System.out.println(e.getMessage());
             return;
         }
         if (/* n != null  && */ !visited[animalAdjList.indexOf(n)])
