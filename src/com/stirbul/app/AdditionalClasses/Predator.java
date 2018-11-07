@@ -18,14 +18,17 @@ public class Predator {
     }
 
     public void predatorOf(Animal... predatorArray){
-        predators.addAll(Arrays.asList(predatorArray));
+        for(Animal a : predatorArray){
+            if(!predators.contains(a))
+                predators.add(a);
+        }
     }
 
     public void predatorListTraverse(){
         for(Animal a : predators){
             System.out.print(a.getSpecies());
             if(!predators.getLast().equals(a))
-                System.out.print(" -> ");
+                System.out.print(" <-> ");
         }
         System.out.println();
     }

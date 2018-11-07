@@ -9,7 +9,10 @@ public class Prey {
     private LinkedList<Animal> preys = new LinkedList<>();
 
     public void preyOf(Animal... animalsArray){
-        preys.addAll(Arrays.asList(animalsArray));
+        for(Animal a : animalsArray){
+            if(!preys.contains(a))
+                preys.add(a);
+        }
     }
 
     public Animal getRandomPrey(){
@@ -27,7 +30,7 @@ public class Prey {
         for(Animal a : preys){
             System.out.print(a.getSpecies());
             if(!preys.getLast().equals(a))
-                System.out.print(" -> ");
+                System.out.print(" <-> ");
         }
         System.out.println();
     }

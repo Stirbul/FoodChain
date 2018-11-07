@@ -124,7 +124,7 @@ public class Service {
                     System.out.print(" -> ");
             }
         }catch (Exception e){
-            System.out.println("\nException. The object does not" +
+            System.out.println("\nEXCEPTION. The object does not" +
                     " have predator -- " + e.getMessage());
             return;
         }
@@ -165,7 +165,7 @@ public class Service {
                     System.out.print(" -> ");
             }
         }catch (Exception e){
-            System.out.println("\nException. The object does not" +
+            System.out.println("\nEXCEPTION. The object does not" +
                     " have prey -- " + e.getMessage());
             return;
         }
