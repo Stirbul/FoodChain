@@ -1,4 +1,4 @@
-package com.stirbul.app.Animals.Bird;
+package com.stirbul.app.animals.bird;
 
 public class Pigeon extends Bird {
     private Double distancePerDay;

@@ -1,12 +1,12 @@
 package com.stirbul.app;
 
-import com.stirbul.app.Animals.Bird.Eagle;
-import com.stirbul.app.Animals.Bird.Owl;
-import com.stirbul.app.Animals.Bird.Pigeon;
-import com.stirbul.app.Animals.Mammal.Elk;
-import com.stirbul.app.Animals.Mammal.Fox;
-import com.stirbul.app.Animals.Mammal.Mouse;
-import com.stirbul.app.Animals.Mammal.Wolf;
+import com.stirbul.app.animals.bird.Eagle;
+import com.stirbul.app.animals.bird.Owl;
+import com.stirbul.app.animals.bird.Pigeon;
+import com.stirbul.app.animals.mammal.Elk;
+import com.stirbul.app.animals.mammal.Fox;
+import com.stirbul.app.animals.mammal.Mouse;
+import com.stirbul.app.animals.mammal.Wolf;
 
 import java.util.Arrays;
 /*
@@ -135,5 +135,8 @@ public class Main {
         System.out.println(Service.isPredatorOf(forestElk,grayWolf));
         System.out.println(Service.isPreyOf(barnOwl,goldenEagle));
         System.out.println("\n");
+
+        System.out.println("\t\thashCode() and equals() : \n");
+        System.out.println("Gray Wolf hashCode() = " + grayWolf.hashCode());
     }
 }

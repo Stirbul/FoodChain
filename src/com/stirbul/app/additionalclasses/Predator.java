@@ -1,6 +1,6 @@
-package com.stirbul.app.AdditionalClasses;
+package com.stirbul.app.additionalclasses;
 
-import com.stirbul.app.Animals.Animal;
+import com.stirbul.app.animals.Animal;
 
 import java.util.*;
 

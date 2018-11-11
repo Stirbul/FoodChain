@@ -1,7 +1,7 @@
-package com.stirbul.app.Animals;
+package com.stirbul.app.animals;
 
-import com.stirbul.app.AdditionalClasses.Prey;
-import com.stirbul.app.AdditionalClasses.Predator;
+import com.stirbul.app.additionalclasses.Prey;
+import com.stirbul.app.additionalclasses.Predator;
 
 
 public class Animal {
@@ -183,12 +183,12 @@ public class Animal {
     }
 
     protected void move(){
-        System.out.println("com.stirbul.app.Animals.Animal is moving with unknown speed");
+        System.out.println("com.stirbul.app.animals.Animal is moving with unknown speed");
     }
 
     protected void move(int moveSpeed){
         this.moveSpeed =  moveSpeed;
-        System.out.println("com.stirbul.app.Animals.Animal is mooving with " + this.moveSpeed);
+        System.out.println("com.stirbul.app.animals.Animal is mooving with " + this.moveSpeed);
     }
 
 }

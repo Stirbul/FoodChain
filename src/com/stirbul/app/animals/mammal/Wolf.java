@@ -1,4 +1,4 @@
-package com.stirbul.app.Animals.Mammal;
+package com.stirbul.app.animals.mammal;
 
 public class Wolf extends Mammal {
     private int numberOfEyes;
@@ -41,7 +41,7 @@ public class Wolf extends Mammal {
 
     @Override
     protected void move() {
-        System.out.println("The com.stirbul.app.Animals.Mammal.Wolf is moving with the unknown speed");
+        System.out.println("The com.stirbul.app.animals.mammal.Wolf is moving with the unknown speed");
     }
 
 }

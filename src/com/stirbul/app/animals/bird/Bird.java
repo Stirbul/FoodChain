@@ -1,6 +1,6 @@
-package com.stirbul.app.Animals.Bird;
+package com.stirbul.app.animals.bird;
 
-import com.stirbul.app.Animals.Animal;
+import com.stirbul.app.animals.Animal;
 
 public class Bird extends Animal {
     private Double flyHeight;

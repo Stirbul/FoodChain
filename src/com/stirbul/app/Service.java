@@ -1,6 +1,6 @@
 package com.stirbul.app;
 
-import com.stirbul.app.Animals.Animal;
+import com.stirbul.app.animals.Animal;
 
 import java.util.*;
 
@@ -47,7 +47,8 @@ public class Service {
 
     //Sibling Determination
     static boolean Sibling(Animal o1, Animal o2){
-        return o1.getPredator().getPredatorList().size() == o2.getPredator().getPredatorList().size();
+        return o1.getPredator().getPredatorList().size() ==
+                o2.getPredator().getPredatorList().size();
     }
 
     static boolean isPredatorOf(Animal predatorObject, Animal preyObject){
@@ -69,10 +70,11 @@ public class Service {
             System.out.print("<> ");
             for(var a : arList){
                 System.out.print(a.getSpecies() + " <> ");
-                if(!set.contains(a))
+                if(!set.contains(a)) {
                     set.add(a);
-                else
+                } else {
                     break;
+                }
             }
             System.out.println();
         }
@@ -82,9 +84,9 @@ public class Service {
         int index = animalAdjList.indexOf(object);
         set.add(object);
         for (Animal n : animalAdjList.get(index).getPredator().getPredatorList()) {
-            if (!set.contains(n) && !loopFound)
+            if (!set.contains(n) && !loopFound) {
                 findLoopUtil(n,set, loopFound);
-            else {
+            } else {
                 loopFound = Boolean.TRUE;
                 set.add(n);
             }
@@ -111,24 +113,27 @@ public class Service {
         //for (Animal n : animalAdjList.get(predatorIndex).getPredator().getPredatorList()) {
         Animal n = animalAdjList.get(predatorIndex).getPredator().getRandomPredator();
         try {
-            if (n == null)
-                throw new IllegalArgumentException("\nEXCEPTION. The object does not have predator");
-            else {
+            if (n == null) {
+                throw new IllegalArgumentException("\nEXCEPTION. " +
+                        "The object does not have predator");
+            } else {
                 //if dont have next object || have next object,
                 // but it is already in [visited] put new line, else arrow(->)
                 if (!predatorObject.getPredator().getPredatorList().contains(n) ||
                         predatorObject.getPredator().getPredatorList().contains(n) &&
-                                visited[animalAdjList.indexOf(n)])
+                                visited[animalAdjList.indexOf(n)]) {
                     System.out.println("\n");
-                else
+                } else {
                     System.out.print(" -> ");
+                }
             }
         } catch (Exception e){
             System.out.println(e.getMessage());
             return;
         }
-        if (/*n!= null &&*/ !visited[animalAdjList.indexOf(n)])
+        if (/*n!= null &&*/ !visited[animalAdjList.indexOf(n)]) {
             traversePredatorDFT_Util(n, visited);
+        }
         //}
     }
 
@@ -150,25 +155,34 @@ public class Service {
         //for (Animal n : animalAdjList.get(preyIndex).getPrey().getPreysList()) {
         Animal n = animalAdjList.get(preyIndex).getPrey().getRandomPrey();
         try{
-            if(n == null)
+            if(n == null){
                 throw new IllegalArgumentException("\nEXCEPTION. The object does not have prey");
+            }
             else {
                 //if dont have next object || have next object,
                 // but it is already in [visited] put new line, else arrow(->)
 
                 if(!preyObject.getPrey().getPreysList().contains(n) ||
                         preyObject.getPrey().getPreysList().contains(n) &&
-                        visited[animalAdjList.indexOf(n)])
+                        visited[animalAdjList.indexOf(n)]) {
                     System.out.println("\n");
-                else
+                }
+                else {
                     System.out.print(" -> ");
+                }
             }
         }catch (Exception e){
             System.out.println(e.getMessage());
             return;
         }
-        if (/* n != null  && */ !visited[animalAdjList.indexOf(n)])
-                traversePreyDFT_Util(n, visited);
+        if (/* n != null  && */ !visited[animalAdjList.indexOf(n)]) {
+            traversePreyDFT_Util(n, visited);
+        }
         //}
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        return super.equals(obj);
     }
 }

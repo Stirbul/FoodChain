@@ -1,4 +1,4 @@
-package com.stirbul.app.Animals.Mammal;
+package com.stirbul.app.animals.mammal;
 
 public class Fox extends Mammal {
     private String agilityLevel;

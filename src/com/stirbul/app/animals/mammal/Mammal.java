@@ -1,6 +1,6 @@
-package com.stirbul.app.Animals.Mammal;
+package com.stirbul.app.animals.mammal;
 
-import com.stirbul.app.Animals.Animal;
+import com.stirbul.app.animals.Animal;
 
 public class Mammal extends Animal {
     private Double brainWeight;
